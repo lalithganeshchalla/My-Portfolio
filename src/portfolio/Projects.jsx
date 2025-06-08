@@ -161,8 +161,8 @@ const Projects = () => {
                 transform: 'scale(1.05)',
                 transition: 'transform 0.3s ease-in-out',
               },
-              width: '250px',
-              
+              width: '300px',
+
             }}
             >
               {project.image && (
