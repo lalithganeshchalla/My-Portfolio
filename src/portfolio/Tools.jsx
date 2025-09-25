@@ -1,20 +1,22 @@
 import React, { useMemo, useState } from 'react';
-import { Divider, IconButton  } from '@mui/material';
+import { Divider, IconButton } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-
-import {
-  Box,
-  Container,
-  CssBaseline,
-  Link,
-  // Switch,
-  Typography,
-  createTheme,
-  ThemeProvider
-} from '@mui/material';
+import { Box, Container, CssBaseline, Link, Typography, createTheme, ThemeProvider } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import logoImage from '../assets/apple-touch-icon.png';
+import html from '../assets/techstack/html.png';
+import css from '../assets/techstack/css.png';
+import js from '../assets/techstack/js.png';
+import react from '../assets/techstack/react.png';
+import tailwind from '../assets/techstack/tailwind.png';
+import bootstrap from '../assets/techstack/bootstrap.png';
+import vscode from '../assets/techstack/vscode.png';
+import git from '../assets/techstack/git.png';
+import github from '../assets/techstack/github.png';
+import figma from '../assets/techstack/figma.png';
+import npm from '../assets/techstack/npm.png';
+import postman from '../assets/techstack/postman.png';
 
 const Tools = () => {
   const [mode, setMode] = useState('light');
@@ -24,6 +26,7 @@ const Tools = () => {
     () =>
       createTheme({
         palette: {
+           background: { default: '#ffffff' },
           mode,
           ...(mode === 'light'
             ? { background: { default: '#f5f5f5' }, text: { primary: '#000' } }
@@ -39,19 +42,20 @@ const Tools = () => {
   const handleThemeToggle = () => {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
+
   const navLinks = [
     { label: 'Home', path: '/home' },
     { label: 'Resume', path: '/resume' },
     { label: 'Projects', path: '/projects' },
     { label: 'Tools', path: '/tools' },
+    { label: "About", path: "/about" },
     { label: 'Contact Us', path: '/contactus' }
   ];
-  
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth='xl' disableGutters sx={{ mt: 2, mb: 4 }}>
-        {/* Header */}
+      <Container maxWidth="xl" disableGutters sx={{ mt: 2, mb: 4 }}>
         <Box
           display="flex"
           flexDirection={{ xs: 'column', sm: 'row' }}
@@ -61,76 +65,138 @@ const Tools = () => {
           mb={2}
         >
           <Box display="flex" alignItems="center" gap={2} sx={{ ml: 2 }}>
-            <img src={logoImage} alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
-
-            <Typography variant="h6">Lalith Ganesh Challa</Typography>
-            <Typography variant="body2" color="text.secondary">
-              Frontend Developer
-            </Typography>
-
+            <img
+              src={logoImage}
+              alt="Logo"
+              style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+            />
+            <Box>
+              <Typography variant="h6" fontWeight="bold">
+                Lalith Ganesh Challa
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Full-Stack Developer
+              </Typography>
+            </Box>
           </Box>
-
-          <Box display="flex" alignItems="center" gap={2} flexWrap="wrap" mt={{ xs: 2, sm: 0 }}>
+          <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
             {navLinks.map((item, index) => (
               <React.Fragment key={item.label}>
-                {index !== 0 && <Typography color="text.secondary">|</Typography>}
+                {index !== 0 && (
+                  <Typography color="text.secondary">|</Typography>
+                )}
                 <Link
                   component={RouterLink}
                   to={item.path}
                   underline="none"
                   onClick={() => setActiveNav(item.label)}
                   sx={{
-                    color: activeNav === item.label ? 'primary.main' : 'text.primary',
+                    color:
+                      activeNav === item.label ? 'primary.main' : 'text.primary',
                     position: 'relative',
+                    fontWeight: activeNav === item.label ? 'bold' : 'normal',
                     '&::after': {
                       content: '""',
                       position: 'absolute',
                       width: activeNav === item.label ? '50%' : '0%',
                       height: '2px',
-                      bottom: 0,
+                      bottom: -4,
                       left: '50%',
                       backgroundColor: 'primary.main',
                       transition: 'all 0.3s ease-out',
-                      transform: 'translateX(-50%)',
+                      transform: 'translateX(-50%)'
                     },
                     '&:hover::after': {
-                      width: '50%',
-                    },
+                      width: '50%'
+                    }
                   }}
                 >
                   {item.label}
                 </Link>
               </React.Fragment>
             ))}
-            {/* <Switch
-              checked={mode === 'dark'}
-              onChange={handleThemeToggle}
-              inputProps={{ 'aria-label': 'theme toggle' }}
-            /> */}
-            <IconButton onClick={handleThemeToggle} color="inherit" aria-label="Toggle theme" sx={{ mr: 2 }}>
+            <IconButton
+              onClick={handleThemeToggle}
+              color="inherit"
+              aria-label="Toggle theme"
+              sx={{ mr: 2 }}
+            >
               {mode === 'dark' ? (
-                <DarkModeIcon sx={{ color: '#fff' }} /> // Yellow moon in dark mode
+                <DarkModeIcon sx={{ color: '#fff' }} />
               ) : (
-                <LightModeIcon sx={{ color: '#FFC107' }} /> // Blue sun in light mode
+                <LightModeIcon sx={{ color: '#FFC107' }} />
               )}
             </IconButton>
           </Box>
         </Box>
         <Divider />
-        <Box mt={4}>
-          <Box
-            sx={{
-              // width: '100%',
-              // height: { xs: '80vh', md: '800px' },
-              // border: 'none',
-              // overflow: 'hidden'
-            }}
+        <Box sx={{ px: { xs: 2, md: 6 }, py: 6 }}>
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            gutterBottom
+            color="text.primary"
           >
-           <Box pl={3}>
-           
-    </Box>
+            Tech Stack
+          </Typography>
+          <Typography variant="body1" color="text.secondary" mb={4}>
+            Technologies I've been working with recently
+          </Typography>
 
+          <Box
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(2, 1fr)',
+              sm: 'repeat(3, 1fr)',
+              md: 'repeat(4, 1fr)',
+              lg: 'repeat(6, 1fr)'
+            }}
+            gap={3}
+            justifyItems="center"
+            alignItems="center"
+          >
+            {[html, css, js, react, tailwind, bootstrap].map((img, i) => (
+              <Box
+                key={i}
+                component="img"
+                src={img}
+                alt="Tech Icon"
+                sx={{ width: 60, height: 60, objectFit: 'contain' }}
+              />
+            ))}
+          </Box>
 
+          {/* Tools */}
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            mt={8}
+            mb={4}
+            color="text.primary"
+          >
+            Tools
+          </Typography>
+          <Box
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(2, 1fr)',
+              sm: 'repeat(3, 1fr)',
+              md: 'repeat(4, 1fr)',
+              lg: 'repeat(6, 1fr)'
+            }}
+            gap={4}
+            justifyItems="center"
+            alignItems="center"
+          >
+            {[vscode, git, github, figma, npm, postman].map((img, i) => (
+              <Box
+                key={i}
+                component="img"
+                src={img}
+                alt="Tool Icon"
+                sx={{ width: 60, height: 60, objectFit: 'contain' }}
+              />
+            ))}
           </Box>
         </Box>
       </Container>

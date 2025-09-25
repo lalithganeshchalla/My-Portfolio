@@ -227,6 +227,7 @@ import './Home.css';
 import {
   Avatar,
   Box,
+  Card,
   Button,
   Container,
   CssBaseline,
@@ -246,12 +247,15 @@ import profileImage from '../assets/my.jpg';
 import logoImage from '../assets/apple-touch-icon.png';
 
 // tech icons (replace with your actual assets)
-import FlutterGif from '../assets/Flutter.gif';
-import ReactGif from '../assets/React.gif';
+// import FlutterGif from '../assets/Flutter.gif';
+// import ReactGif from '../assets/React.gif';
 // import RubySvg from '../assets/ruby.svg';
 // import JavaSvg from '../assets/java.svg';
 // import DotNetSvg from '../assets/dotnet.svg';
 // import LinkedInSvg from '../assets/linkedin.svg';
+import Gmail from '../assets/gif/Gmail.gif';
+import GitHub from '../assets/gif/GitHub.gif';
+import LinkedIn from '../assets/gif/Linkedin.gif';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -262,6 +266,7 @@ const Home = () => {
     () =>
       createTheme({
         palette: {
+          background: { default: '#ffffff' }, 
           mode,
           ...(mode === 'light'
             ? {
@@ -289,6 +294,7 @@ const Home = () => {
     { label: 'Resume', path: '/resume' },
     { label: 'Projects', path: '/projects' },
     { label: 'Tools', path: '/tools' },
+    { label: 'About', path: '/about' },
     { label: 'Contact Us', path: '/contactus' }
   ];
 
@@ -419,20 +425,80 @@ const Home = () => {
 
             {/* Tech Icons */}
             <Box mt={3} display="flex" gap={3} flexWrap="wrap">
-              
-            <img src={ReactGif} alt="React Gif" width={40} />
-            <img src={FlutterGif} alt="Flutter Gif" width={40} />
-              {/* <img src={RubySvg} alt="Ruby" width={40} />
-              <img src={JavaSvg} alt="Java" width={40} />
-              <img src={DotNetSvg} alt=".NET Core" width={40} />
-              <img src={LinkedInSvg} alt="LinkedIn" width={40} /> */}
-            </Box>
+  <a href="mailto:your-email@gmail.com?subject=Portfolio%20Inquiry&body=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer">
+    <Card
+      sx={{
+        borderRadius: '60px',
+        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+        width: '70px',
+        height: '70px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        '&:hover': {
+          transform: 'scale(1.1)',
+          boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+        },
+      }}
+    >
+      <img src={Gmail} alt="Gmail" width={50} />
+    </Card>
+  </a>
+
+  <a href="https://github.com/lalithganeshchalla" target="_blank" rel="noopener noreferrer">
+    <Card
+      sx={{
+        borderRadius: '60px',
+        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+        width: '70px',
+        height: '70px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        '&:hover': {
+          transform: 'scale(1.1)',
+          boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+        },
+      }}
+    >
+      <img src={GitHub} alt="GitHub" width={50} />
+    </Card>
+  </a>
+
+  <a href="https://www.linkedin.com/in/challa-lalith-ganesh" target="_blank" rel="noopener noreferrer">
+    <Card
+      sx={{
+        borderRadius: '60px',
+        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+        width: '70px',
+        height: '70px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        '&:hover': {
+          transform: 'scale(1.1)',
+          boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+        },
+      }}
+    >
+      <img src={LinkedIn} alt="LinkedIn" width={50} />
+    </Card>
+  </a>
+</Box>
+
 
             {/* Buttons */}
             <Box mt={4} display="flex" gap={2}>
               <Button
                 variant="contained"
-                sx={{ bgcolor: '#f57c00', color: '#fff', px: 3, py: 1.5 }}
+                sx={{ bgcolor: '#f57c00', color: '#fff', px: 3, py: 1.5,
+                  borderRadius: 10 }}
                 onClick={() => navigate('/projects')}
               >
                 View My Work
@@ -443,7 +509,8 @@ const Home = () => {
                   borderColor: '#f57c00',
                   color: '#f57c00',
                   px: 3,
-                  py: 1.5
+                  py: 1.5,
+                  borderRadius: 10
                 }}
                 onClick={() => navigate('/resume')}
               >
