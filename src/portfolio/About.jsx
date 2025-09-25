@@ -36,6 +36,7 @@ const education = [
     location: "Narsapuram, Andhra Pradesh",
     type: "Full Time",
     date: "2019 – 2022",
+
   },
 ];
 
