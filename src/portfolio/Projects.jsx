@@ -2,9 +2,9 @@ import React, { useMemo, useState } from 'react';
 import { Card, Divider, IconButton , Grid, CardMedia, CardContent } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import TaskManager from '../assets/taskmanager.png';
-import PortfolioCover from '../assets/portfolio.png';
-import MasterCode from '../assets/mastercode.png';
+// import TaskManager from '../assets/taskmanager.png';
+// import PortfolioCover from '../assets/portfolio.png';
+// import MasterCode from '../assets/mastercode.png';
 import {
   Box,
   Container,
@@ -51,26 +51,26 @@ const Projects = () => {
     { label: 'Contact Us', path: '/contactus' }
   ];
   const projects = [
-    {
-      title: 'Task Management App',
-      description: 'A Task Management (To-Do) App is a productivity tool that helps users organize, track, and complete their daily tasks or goals efficiently',
-      image: {src: TaskManager, alt: 'Task Manager App'},
-      link: 'https://task-manager-git-main-lalith-ganeshs-projects.vercel.app/'
-    },
-    {
-      title: 'MasterCode',
-      description: 'MasterCode is an education app focused on teaching coding and programming skills in an interactive and structured way',
-      image: {src: MasterCode},
-      link: 'https://master-code-git-main-lalith-ganeshs-projects.vercel.app/'
-    },
-    {
-      title: 'Portfolio',
-      description: 'My Portfolio Website is a personal showcase of my skills, projects, and experience as a frontend developer.',
-      image: {src: PortfolioCover},
-      link: 'https://rest-app-git-main-lalith-ganeshs-projects.vercel.app/'
-    },
+  {
+    title: 'Task Management App',
+    description: 'A Task Management (To-Do) App ...',
+    image: { src: '/assets/taskmanager.png', alt: 'Task Manager App' },
+    link: 'https://task-manager-git-main-lalith-ganeshs-projects.vercel.app/'
+  },
+  {
+    title: 'MasterCode',
+    description: 'MasterCode is an education app ...',
+    image: { src: '/assets/mastercode.png', alt: 'MasterCode App' },
+    link: 'https://master-code-git-main-lalith-ganeshs-projects.vercel.app/'
+  },
+  {
+    title: 'Portfolio',
+    description: 'My Portfolio Website ...',
+    image: { src: '/assets/portfolio.png', alt: 'Portfolio Cover' },
+    link: 'https://rest-app-git-main-lalith-ganeshs-projects.vercel.app/'
+  }
+];
 
-  ];
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
