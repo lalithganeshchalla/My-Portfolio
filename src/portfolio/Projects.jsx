@@ -54,19 +54,19 @@ const Projects = () => {
   {
     title: 'Task Management App',
     description: 'A Task Management (To-Do) App ...',
-    image: { src: require('../assets/taskmanager.png'), alt: 'Task Manager App' },
+    image: { src: '/assets/taskmanager.png', alt: 'Task Manager App' },
     link: 'https://task-manager-git-main-lalith-ganeshs-projects.vercel.app/'
   },
   {
     title: 'MasterCode',
     description: 'MasterCode is an education app ...',
-    image: { src: require('../assets/mastercode.png'), alt: 'MasterCode App' },
+    image: { src: '/assets/mastercode.png', alt: 'MasterCode App' },
     link: 'https://master-code-git-main-lalith-ganeshs-projects.vercel.app/'
   },
   {
     title: 'Portfolio',
     description: 'My Portfolio Website ...',
-    image: { src: require('../assets/portfolio.png'), alt: 'Portfolio Cover' },
+    image: { src: '/assets/portfolio.png', alt: 'Portfolio Cover' },
     link: 'https://rest-app-git-main-lalith-ganeshs-projects.vercel.app/'
   }
 ];
@@ -181,7 +181,7 @@ const Projects = () => {
                   component="img"
                   height="180"
                   image={project.image.src}
-                  alt={project.title}
+                  alt={project.image.alt}
                   sx={{":hover": {
                     transform: 'scale(1.05)',
                     transition: 'transform 0.3s ease-in-out',
