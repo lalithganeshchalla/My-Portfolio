@@ -42,7 +42,9 @@ const education = [
 
 
 const About = () => {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState(() => {
+      return localStorage.getItem('mode') || 'light';
+    });
   const [activeNav, setActiveNav] = useState("About");
 
   const theme = useMemo(
@@ -68,7 +70,11 @@ const About = () => {
   );
 
   const handleThemeToggle = () => {
-    setMode((prev) => (prev === "light" ? "dark" : "light"));
+    setMode((prevMode) => {
+      const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mode', newMode);   // persist
+      return newMode;
+    });
   };
 
   const navLinks = [

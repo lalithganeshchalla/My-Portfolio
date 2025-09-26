@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Divider, IconButton} from '@mui/material';
+import { Divider, IconButton } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import './Home.css';
@@ -8,7 +8,6 @@ import {
   Container,
   CssBaseline,
   Link,
-  // Switch,
   Typography,
   createTheme,
   ThemeProvider
@@ -17,14 +16,16 @@ import { Link as RouterLink } from 'react-router-dom';
 import logoImage from '../assets/apple-touch-icon.png';
 
 const Resume = () => {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState(() => {
+    return localStorage.getItem('mode') || 'light';
+  });
   const [activeNav, setActiveNav] = useState('Resume');
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          background: { default: '#ffffffff' }, 
+          background: { default: '#ffffffff' },
           mode,
           ...(mode === 'light'
             ? { background: { default: '#f5f5f5' }, text: { primary: '#000' } }
@@ -37,16 +38,20 @@ const Resume = () => {
     [mode]
   );
   const navLinks = [
-  { label: 'Home', path: '/home' },
-  { label: 'Resume', path: '/resume' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'Tools', path: '/tools' },
-  { label: "About", path: "/about" },
-  { label: 'Contact Us', path: '/contactus' }
-];
+    { label: 'Home', path: '/home' },
+    { label: 'Resume', path: '/resume' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Tools', path: '/tools' },
+    { label: "About", path: "/about" },
+    { label: 'Contact Us', path: '/contactus' }
+  ];
 
   const handleThemeToggle = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => {
+      const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mode', newMode);   // persist
+      return newMode;
+    });
   };
 
   return (
@@ -128,15 +133,15 @@ const Resume = () => {
           </Box>
         </Box>
         <Divider />
-        <Box mt={4} flexWrap="wrap" sx={{mr: 4,ml: 4}}>
+        <Box mt={4} flexWrap="wrap" sx={{ mr: 4, ml: 4 }}>
           <Typography
-                        variant="h4"
-                        fontWeight="bold"
-                        color="primary"
-                        gutterBottom
-                      >
-                        My Resume
-                      </Typography>
+            variant="h4"
+            fontWeight="bold"
+            color="primary"
+            gutterBottom
+          >
+            My Resume
+          </Typography>
           <iframe
             src="/resume.pdf"
             title="Resume"

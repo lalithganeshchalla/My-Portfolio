@@ -22,7 +22,9 @@ import flutter from '../assets/techstack/flutter.png';import ts from '../assets/
 
 
 const Tools = () => {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState(() => {
+      return localStorage.getItem('mode') || 'light';
+    });
   const [activeNav, setActiveNav] = useState('Tools');
 
   const theme = useMemo(
@@ -43,7 +45,11 @@ const Tools = () => {
   );
 
   const handleThemeToggle = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => {
+      const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mode', newMode);   // persist
+      return newMode;
+    });
   };
 
   const navLinks = [

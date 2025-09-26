@@ -20,7 +20,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import logoImage from '../assets/apple-touch-icon.png';
 
 const Projects = () => {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState(() => {
+      return localStorage.getItem('mode') || 'light';
+    });
   const [activeNav, setActiveNav] = useState('Projects');
 
   const theme = useMemo(
@@ -41,7 +43,11 @@ const Projects = () => {
   );
 
   const handleThemeToggle = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => {
+      const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mode', newMode);   // persist
+      return newMode;
+    });
   };
   const navLinks = [
     { label: 'Home', path: '/home' },

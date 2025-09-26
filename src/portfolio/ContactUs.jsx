@@ -16,7 +16,9 @@ import MyForm from '../components/MyForm';
 
 const ContactUs = () => {
   //const navigate = useNavigate();
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState(() => {
+      return localStorage.getItem('mode') || 'light';
+    });
   const [activeNav, setActiveNav] = useState('Contact Us');
 
   const theme = useMemo(
@@ -43,7 +45,11 @@ const ContactUs = () => {
   );
 
   const handleThemeToggle = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => {
+      const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mode', newMode);   // persist
+      return newMode;
+    });
   };
 
   const navLinks = [

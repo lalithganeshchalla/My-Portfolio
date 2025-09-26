@@ -259,7 +259,9 @@ import LinkedIn from '../assets/gif/Linkedin.gif';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState(() => {
+      return localStorage.getItem('mode') || 'light';
+    });
   const [activeNav, setActiveNav] = useState('Home');
 
   const theme = useMemo(
@@ -286,7 +288,11 @@ const Home = () => {
   );
 
   const handleThemeToggle = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => {
+      const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mode', newMode);   // persist
+      return newMode;
+    });
   };
 
   const navLinks = [
