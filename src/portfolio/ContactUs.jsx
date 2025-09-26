@@ -182,12 +182,13 @@ const ContactUs = () => {
 
           <MyForm />  
           </Grid>
-          <Grid item xs={12} md={2} textAlign="center">
+          <Grid item xs={12} md={2} textAlign="left">
             <Typography
               variant="h6"
               fontWeight="bold"
               color="primary"
               gutterBottom
+              sx={{ ml: 4 ,mb:3}}
             >
               My Contact Details 
             </Typography>
@@ -212,7 +213,7 @@ const ContactUs = () => {
       >
         <img src={email} alt="Gmail" style={{ width: 40, height: 40 }} />
         <Typography variant="body1" color="text.secondary">
-          myemail@gmail.com
+          challalalithganesh@gmail.com
         </Typography>
       </Card>
       </a>
@@ -230,7 +231,7 @@ const ContactUs = () => {
       >
         <img src={phone} alt="Phone" style={{ width: 40, height: 40 }} />
         <Typography variant="body1" color="text.secondary">
-          +91 9876543210
+          +91 9515394859
         </Typography>
       </Card>
         <a href="https://github.com/lalithganeshchalla" target="_blank" rel="noopener noreferrer">

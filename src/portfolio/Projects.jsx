@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Card, Divider, IconButton, Grid, CardMedia, CardContent, Button } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import ReactLogo from '../assets/gif/React.gif';
 // import TaskManager from '../assets/taskmanager.png';
 // import PortfolioCover from '../assets/portfolio.png';
 // import MasterCode from '../assets/mastercode.png';
@@ -167,14 +168,14 @@ const Projects = () => {
           >
             <Box pl={3}>
               <Typography
-                            variant="h4"
-                            fontWeight="bold"
-                            color="primary"
-                            gutterBottom
-                          >
-                            Web Development Projects
-                          </Typography>
-              
+                variant="h4"
+                fontWeight="bold"
+                color="primary"
+                gutterBottom
+              >
+                Web Development Projects
+              </Typography>
+
               <Grid container spacing={3}>
                 {projects.map((project, index) => (
                   <Grid item xs={12} sm={6} md={4} key={index}>
@@ -185,6 +186,7 @@ const Projects = () => {
                           transition: 'transform 0.3s ease-in-out',
                         },
                         width: '250px',
+                        borderRadius: 5,
 
                       }}
                     >
@@ -209,27 +211,67 @@ const Projects = () => {
                         <Typography variant="body2" color="text.secondary" gutterBottom
                           sx={{
                             display: '-webkit-box',
-                            WebkitLineClamp: 3,
+                            WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
-                            minHeight: '60px',
+                            minHeight: '43px',
                           }}
                         >
                           {project.description}
                         </Typography>
-                        <Button
-                          variant="contained"
-                          sx={{
-                            bgcolor: '#f57c00', color: '#fff', px: 3, py: 1.5,
-                            borderRadius: 10
-                          }}
-                        // onClick={() => navigate('/projects')}
-                        >
-                          <Link href={project.link} color='#fff' target="_blank" rel="noopener noreferrer">
-                            View Project
-                          </Link>
-                        </Button>
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+  <Box display="flex" alignItems="center" gap={2} mt={2}>
+    <Button
+      variant="contained"
+      sx={{
+        bgcolor: '#f57c00',
+        color: '#fff',
+        px: 1,
+        py: 1.1,
+        borderRadius: 10,
+        ':hover': { bgcolor: '#11ff00ff' },
+      }}
+    >
+      <Link
+        href={project.link}
+        color="#fff"
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{ fontSize: 10, fontWeight: 'bold', textDecoration: 'none' }}
+      >
+        View Project
+      </Link>
+    </Button>
+
+    <a
+      href="https://github.com/lalithganeshchalla"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Card
+        sx={{
+          borderRadius: '60px',
+          boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+          width: '40px',
+          height: '40px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          cursor: 'pointer',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.1)',
+            boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+          },
+          ml: 8
+        }}
+      >
+        <img src={ReactLogo} alt="GitHub" width={30} />
+      </Card>
+    </a>
+  </Box>
+</Grid>
 
                       </CardContent>
                     </Card>
