@@ -129,9 +129,14 @@ const Resume = () => {
         </Box>
         <Divider />
         <Box mt={4} flexWrap="wrap" sx={{mr: 4,ml: 4}}>
-          <Typography variant="h5" gutterBottom>
-            My Resume
-          </Typography>
+          <Typography
+                        variant="h4"
+                        fontWeight="bold"
+                        color="primary"
+                        gutterBottom
+                      >
+                        My Resume
+                      </Typography>
           <iframe
             src="/resume.pdf"
             title="Resume"

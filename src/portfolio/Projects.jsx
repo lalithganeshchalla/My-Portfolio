@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Card, Divider, IconButton , Grid, CardMedia, CardContent } from '@mui/material';
+import { Card, Divider, IconButton, Grid, CardMedia, CardContent, Button } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 // import TaskManager from '../assets/taskmanager.png';
@@ -26,7 +26,7 @@ const Projects = () => {
     () =>
       createTheme({
         palette: {
-           background: { default: '#ffffff' },
+          background: { default: '#ffffff' },
           mode,
           ...(mode === 'light'
             ? { background: { default: '#f5f5f5' }, text: { primary: '#000' } }
@@ -51,25 +51,31 @@ const Projects = () => {
     { label: 'Contact Us', path: '/contactus' }
   ];
   const projects = [
-  {
-    title: 'Task Management App',
-    description: 'A Task Management (To-Do) App ...',
-    image: { src: '/assets/taskmanager.png', alt: 'Task Manager App' },
-    link: 'https://task-manager-git-main-lalith-ganeshs-projects.vercel.app/'
-  },
-  {
-    title: 'MasterCode',
-    description: 'MasterCode is an education app ...',
-    image: { src: '/assets/mastercode.png', alt: 'MasterCode App' },
-    link: 'https://master-code-git-main-lalith-ganeshs-projects.vercel.app/'
-  },
-  {
-    title: 'Portfolio',
-    description: 'My Portfolio Website ...',
-    image: { src: '/assets/portfolio.png', alt: 'Portfolio Cover' },
-    link: 'https://rest-app-git-main-lalith-ganeshs-projects.vercel.app/'
-  }
-];
+    {
+      title: 'Task Management App',
+      description: 'A clean and user-friendly web application is made to improve productivity. It lets users easily organize, track, and manage their daily tasks. Features include fast task creation, marking tasks as complete, and an adaptable interface for smooth use on different devices.',
+      image: { src: '/assets/taskmanager.png', alt: 'Task Manager App' },
+      link: 'https://task-manager-git-main-lalith-ganeshs-projects.vercel.app/'
+    },
+    {
+      title: 'MasterCode',
+      description: 'Master Code is a responsive web platform for competitive programming, enabling users to participate in timed coding challenges, view real-time leaderboards, and track progress. It offers an engaging environment for coders to showcase skills and compete.',
+      image: { src: '/assets/mastercode.png', alt: 'MasterCode App' },
+      link: 'https://master-code-git-main-lalith-ganeshs-projects.vercel.app/'
+    },
+    {
+      title: 'Portfolio',
+      description: 'A responsive personal portfolio website designed to showcase my skills and projects as a a Full-Stack Developer. It features intuitive navigation, detailed project displays, and easy access to my resume, demonstrating my web development expertise.',
+      image: { src: '/assets/portfolio.png', alt: 'Portfolio Cover' },
+      link: 'https://rest-app-git-main-lalith-ganeshs-projects.vercel.app/'
+    },
+    {
+      title: 'Generative AI Prompts',
+      description: 'A platform designed for exploring and generating creative prompts for various generative AI models. It offers an intuitive interface to discover diverse prompt categories and generate unique inputs, showcasing practical application of AI concepts.',
+      image: { src: '/assets/ai.png', alt: 'Generative AI Prompts' },
+      link: 'https://generative-ai-prompts.vercel.app/'
+    }
+  ];
 
   return (
     <ThemeProvider theme={theme}>
@@ -159,51 +165,78 @@ const Projects = () => {
               // overflow: 'hidden'
             }}
           >
-           <Box pl={3}>
-            <Typography variant="h4" component="h1" gutterBottom>
-              Web Development Projects
-              </Typography>
-      <Grid container spacing={3}>
-        {projects.map((project, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card elevation={6} 
-            sx={{
-              ":hover": {
-                transform: 'scale(1.05)',
-                transition: 'transform 0.3s ease-in-out',
-              },
-              width: '300px',
+            <Box pl={3}>
+              <Typography
+                            variant="h4"
+                            fontWeight="bold"
+                            color="primary"
+                            gutterBottom
+                          >
+                            Web Development Projects
+                          </Typography>
+              
+              <Grid container spacing={3}>
+                {projects.map((project, index) => (
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <Card elevation={6}
+                      sx={{
+                        ":hover": {
+                          transform: 'scale(1.05)',
+                          transition: 'transform 0.3s ease-in-out',
+                        },
+                        width: '250px',
 
-            }}
-            >
-              {project.image && (
-                <CardMedia
-                  component="img"
-                  height="180"
-                  image={project.image.src}
-                  alt={project.image.alt}
-                  sx={{":hover": {
-                    transform: 'scale(1.05)',
-                    transition: 'transform 0.3s ease-in-out',
-                  }}}
-                />
-              )}
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  {project.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  {project.description}
-                </Typography>
-                <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                  View Project
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+                      }}
+                    >
+                      {project.image && (
+                        <CardMedia
+                          component="img"
+                          height="180"
+                          image={project.image.src}
+                          alt={project.image.alt}
+                          sx={{
+                            ":hover": {
+                              transform: 'scale(1.05)',
+                              transition: 'transform 0.3s ease-in-out',
+                            }
+                          }}
+                        />
+                      )}
+                      <CardContent>
+                        <Typography variant="h6" gutterBottom>
+                          {project.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" gutterBottom
+                          sx={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            minHeight: '60px',
+                          }}
+                        >
+                          {project.description}
+                        </Typography>
+                        <Button
+                          variant="contained"
+                          sx={{
+                            bgcolor: '#f57c00', color: '#fff', px: 3, py: 1.5,
+                            borderRadius: 10
+                          }}
+                        // onClick={() => navigate('/projects')}
+                        >
+                          <Link href={project.link} color='#fff' target="_blank" rel="noopener noreferrer">
+                            View Project
+                          </Link>
+                        </Button>
+
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
 
 
           </Box>

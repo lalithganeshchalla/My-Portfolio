@@ -138,7 +138,8 @@ const Tools = () => {
             variant="h4"
             fontWeight="bold"
             gutterBottom
-            color="text.primary"
+            //color="text.primary"
+            color="primary"
           >
             Tech Stack
           </Typography>
@@ -175,7 +176,8 @@ const Tools = () => {
             fontWeight="bold"
             mt={8}
             mb={4}
-            color="text.primary"
+            //color="text.primary"
+            color='primary'
           >
             Tools
           </Typography>

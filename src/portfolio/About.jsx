@@ -163,7 +163,7 @@ const About = () => {
         {/* About Section */}
         <Container maxWidth="md" sx={{ py: 6 }}>
           <Box mb={6}>
-            <Typography variant="h4" fontWeight="bold" gutterBottom>
+            <Typography variant="h4" fontWeight="bold" color="primary" gutterBottom>
               About Me
             </Typography>
             <Typography color="text.secondary">
@@ -173,7 +173,7 @@ const About = () => {
 
           {/* Work Experience */}
           <Box mb={6}>
-            <Typography variant="h4" fontWeight="bold" gutterBottom>
+            <Typography variant="h4" fontWeight="bold" color="primary" gutterBottom>
               Work Experience
             </Typography>
             {experiences.length === 0 ? (
@@ -221,7 +221,7 @@ const About = () => {
 
           {/* Education */}
           <Box mb={6}>
-            <Typography variant="h4" fontWeight="bold" gutterBottom>
+            <Typography variant="h4" fontWeight="bold" color="primary" gutterBottom>
               Education
             </Typography>
             {education.map((edu, idx) => (
