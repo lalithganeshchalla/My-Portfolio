@@ -1,42 +1,39 @@
 import React, { useMemo, useState } from 'react';
-import { Card, Divider, IconButton  } from '@mui/material';
+import './Home.css';
+import {Avatar, Box ,Card, Container, CssBaseline,Divider,Grid,IconButton,Link,Typography,createTheme,ThemeProvider} from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import messageIcon from '../assets/messageIcon.svg';
-import time from '../assets/time.svg';
-import splash from '../assets/high-voltage.svg';
-import MagicSpark from '../assets/magic-sparkles.svg';
-import GoogleIcon  from '../assets/google.svg';
-import PhoneIcon from '../assets/phone.svg';
-import LinkedInSvg from '../assets/linkedin.svg';
-
-import {
-  Box,
-  Container,
-  CssBaseline,
-  Link,
-  // Switch,
-  Typography,
-  createTheme,
-  ThemeProvider
-} from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink,
+   //useNavigate 
+  } from 'react-router-dom';
+import profileImage from '../assets/my.jpg';
 import logoImage from '../assets/apple-touch-icon.png';
+import GitHub from '../assets/gif/GitHub.gif';
+import LinkedIn from '../assets/gif/Linkedin.gif';
+import phone from '../assets/gif/contact.gif';
+import email from '../assets/gif/email.gif';
+import MyForm from '../components/MyForm';
 
 const ContactUs = () => {
+  //const navigate = useNavigate();
   const [mode, setMode] = useState('light');
   const [activeNav, setActiveNav] = useState('Contact Us');
 
-  
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-           background: { default: '#ffffff' },
+          background: { default: '#ffffff' }, 
           mode,
           ...(mode === 'light'
-            ? { background: { default: '#f5f5f5' }, text: { primary: '#000' } }
-            : { background: { default: '#121212' }, text: { primary: '#fff' } })
+            ? {
+                background: { default: '#fff' },
+                text: { primary: '#000' }
+              }
+            : {
+                background: { default: '#121212' },
+                text: { primary: '#fff' }
+              })
         },
         typography: {
           fontFamily: 'Arial, sans-serif'
@@ -48,19 +45,20 @@ const ContactUs = () => {
   const handleThemeToggle = () => {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
+
   const navLinks = [
     { label: 'Home', path: '/home' },
     { label: 'Resume', path: '/resume' },
     { label: 'Projects', path: '/projects' },
     { label: 'Tools', path: '/tools' },
-    { label: "About", path: "/about" }, 
+    { label: 'About', path: '/about' },
     { label: 'Contact Us', path: '/contactus' }
   ];
-  
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth='xl' disableGutters sx={{ mt: 2, mb: 4 }}>
+      <Container maxWidth="xl" disableGutters sx={{ mt: 2, mb: 2 }}>
         {/* Header */}
         <Box
           display="flex"
@@ -136,90 +134,147 @@ const ContactUs = () => {
           </Box>
         </Box>
         <Divider />
-        <Box mt={4}>
-          <Box
-            sx={{
-            }}
-          >
-            <Card sx={{margin:'30px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-              <Box sx={{ display: 'flex',flexDirection:'column', justifyContent: 'center', alignItems: 'center', height: '100%',p:3 }}>
-                <img src={messageIcon} alt='messageIcon' style={{ width: '60px', height: '60px', borderRadius: '10%',backgroundColor: 'blue' ,padding: '10px' }} />
-                <Typography variant="h5" sx={{ ml: 2,mt:2 }}>
-                  We'd love to here from you.
-                </Typography>
-                <Typography variant="subtitle2" sx={{ ml: 2,mt:0 }}>
-                  Here's what some of my satisfied clients have to say about my work.
-                </Typography>
-                <Box sx={{ display: 'flex',flexDirection:'row', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
-                  <Card sx={{ margin: '10px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', width: '300px' }}>
-                    <img src={time} alt='time' style={{ width: '10px', height: '10px' }} />
-                    <Typography variant="caption" sx={{ ml: 1}}>
-                      24/7 Assistance
-                    </Typography>
-                   </Card>
-                  <Card sx={{ margin: '10px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', width: '300px' }}>
-                    <img src={splash} alt='time' style={{ width: '10px', height: '10px' }} />
-                    <Typography variant="caption" sx={{ ml: 1}}>
-                      Quick Change Resolutions
-                    </Typography>
-                  </Card>
-                  <Card sx={{ margin: '10px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', width: '300px' }}>
-                    <img src={MagicSpark} alt='time' style={{ width: '10px', height: '10px' }}/>
-                    <Typography variant="caption" sx={{ ml: 1 }}>
-                      Flexible Working hours
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-            </Card>
-            <Box pl={3}>
-            </Box>
-          </Box>
-        </Box>
-        <Divider/>
-        <Box sx={{ display: 'flex',flexDirection:'row', justifyContent: 'center', alignItems: 'center', mt: 2 }}>
-                  <Card sx={{ margin: '10px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', width: '300px' }}>
-                    <Link
-                    href="https://mail.google.com/mail/u/0/#inbox?compose=new"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <img src={GoogleIcon} alt='time' style={{ width: '10px', height: '10px' }} />
-                    <Typography variant="caption" sx={{ ml: 1}}>
-                      challalalithganesh@gmail.com
-                    </Typography>
-                  </Link>
-                    
-                   </Card>
-                  <Card sx={{ margin: '10px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', width: '300px' }}>
-                    <Link
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <img src={PhoneIcon} alt='time' style={{ width: '10px', height: '10px' }} />
-                    <Typography variant="caption" sx={{ ml: 1}}>
-                      +91 9515394859
-                    </Typography>
-                  </Link>
-                  </Card>
-                  <Card sx={{ margin: '10px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', width: '300px' }}>
-                    <Link
-                    href="https://www.linkedin.com/in/challa-lalith-ganesh"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <img src={LinkedInSvg} alt='time' style={{ width: '10px', height: '10px' }} />
-                    <Typography variant="caption" sx={{ ml: 1}}>
-                      @lalithganeshchalla
-                    </Typography>
-                  </Link>
-                  </Card>
 
-                </Box>
-                <Divider sx={{ mt: 1 }} />
-                <Typography display='flex' flexDirection='column' justifyContent='end' textAlign='center' variant="caption" sx={{ mt: 0, mb: 0 }}>
-                  Copyright © 2025 Lalith Ganesh Challa. All rights.
-                  </Typography>
+        {/* Hero Section */}
+        <Grid
+          container
+          spacing={4}
+          alignItems="center"
+          justifyContent="center"
+          my={8}
+        >
+          {/* Profile Image */}
+          <Grid item xs={12} md={4} textAlign="center">
+            <Box
+              sx={{
+                border: '4px solid #00bcd4',
+                borderRadius: '50%',
+                display: 'inline-block',
+                p: 1
+              }}
+            >
+              <Avatar
+                src={profileImage}
+                alt="Lalith Ganesh"
+                sx={{ width: 220, height: 220 }}
+                
+              />
+            </Box>
+          </Grid>
+
+          {/* Text Content */}
+          <Grid item xs={12} md={6}>
+            {/* <Typography variant="h4" fontWeight="bold" gutterBottom>
+              Building Scalable Web & Mobile Solutions
+            </Typography> */}
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              color="primary"
+              gutterBottom
+            >
+              Get In Touch
+            </Typography>
+
+            <Typography variant="body1" color="text.secondary" mt={2}>
+              I'm always open to new opportunities and collaborations.
+            </Typography>
+
+          <MyForm />  
+          </Grid>
+          <Grid item xs={12} md={2} textAlign="center">
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              color="primary"
+              gutterBottom
+            >
+              My Contact Details 
+            </Typography>
+             <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, // responsive
+        gap: 2,
+      }}
+    >
+      <a href="mailto:your-email@gmail.com?subject=Portfolio%20Inquiry&body=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer">
+      <Card
+        sx={{
+          p: 2,
+          display: "flex",
+          alignItems: "center", // ✅ vertically center
+          gap: 2,
+          width: 300,
+          borderRadius: 20,
+          boxShadow: '0 4px 8px rgba(0, 0, 0.1, 0.6)'
+        }}
+      >
+        <img src={email} alt="Gmail" style={{ width: 40, height: 40 }} />
+        <Typography variant="body1" color="text.secondary">
+          myemail@gmail.com
+        </Typography>
+      </Card>
+      </a>
+
+      <Card
+        sx={{
+          p: 2,
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          width: 300,
+          borderRadius: 20,
+          boxShadow: '0 4px 8px rgba(0, 0, 0.1, 0.6)'
+        }}
+      >
+        <img src={phone} alt="Phone" style={{ width: 40, height: 40 }} />
+        <Typography variant="body1" color="text.secondary">
+          +91 9876543210
+        </Typography>
+      </Card>
+        <a href="https://github.com/lalithganeshchalla" target="_blank" rel="noopener noreferrer">
+      <Card
+        sx={{
+          p: 2,
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          width: 300,
+          borderRadius: 20,
+          boxShadow: '0 4px 8px rgba(0, 0, 0.1, 0.6)'
+        }}
+      >
+        <img src={GitHub} alt="GitHub" style={{ width: 40, height: 40 }} />
+        <Typography variant="body1" color="text.secondary">
+          GitHub
+        </Typography>
+      </Card>
+        </a>
+        <a href="https://www.linkedin.com/in/challa-lalith-ganesh" target="_blank" rel="noopener noreferrer">
+      <Card
+        sx={{
+          p: 2,
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          width: 300,
+          borderRadius: 20,
+          boxShadow: '0 4px 8px rgba(0, 0, 0.1, 0.6)'
+        }}
+      >
+        <img src={LinkedIn} alt="LinkedIn" style={{ width: 40, height: 40 }} />
+        <Typography variant="body1" color="text.secondary" fontWeight={200} >
+          Linkedin
+        </Typography>
+      </Card>
+      </a>
+    </Box>
+              </Grid>
+        </Grid>
       </Container>
     </ThemeProvider>
   );
 };
+
 export default ContactUs;

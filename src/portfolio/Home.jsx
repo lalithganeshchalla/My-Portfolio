@@ -424,7 +424,7 @@ const Home = () => {
             </Typography>
 
             {/* Tech Icons */}
-            <Box mt={3} display="flex" gap={3} flexWrap="wrap">
+            <Box mt={3} display="flex" gap={3} flexWrap="wrap" justifyContent="center">
   <a href="mailto:your-email@gmail.com?subject=Portfolio%20Inquiry&body=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer">
     <Card
       sx={{

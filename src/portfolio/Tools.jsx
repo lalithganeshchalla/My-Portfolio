@@ -17,6 +17,9 @@ import github from '../assets/techstack/github.png';
 import figma from '../assets/techstack/figma.png';
 import npm from '../assets/techstack/npm.png';
 import postman from '../assets/techstack/postman.png';
+import androidstudios from '../assets/techstack/androidstudio.png';
+import flutter from '../assets/techstack/flutter.png';import ts from '../assets/techstack/typescript.png';
+
 
 const Tools = () => {
   const [mode, setMode] = useState('light');
@@ -155,7 +158,7 @@ const Tools = () => {
             justifyItems="center"
             alignItems="center"
           >
-            {[html, css, js, react, tailwind, bootstrap].map((img, i) => (
+            {[react ,flutter , js,ts, html,css, tailwind, bootstrap].map((img, i) => (
               <Box
                 key={i}
                 component="img"
@@ -188,7 +191,7 @@ const Tools = () => {
             justifyItems="center"
             alignItems="center"
           >
-            {[vscode, git, github, figma, npm, postman].map((img, i) => (
+            {[vscode,androidstudios, git, github, figma, npm, postman].map((img, i) => (
               <Box
                 key={i}
                 component="img"
