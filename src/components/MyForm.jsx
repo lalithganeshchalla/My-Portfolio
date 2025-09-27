@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, Typography, Card } from "@mui/material";
-import { useNavigate } from "react-router-dom"; // ✅ import from react-router-dom
-import sendToWhatsApp from "./SendToWhatsApp";
+import sendToWhatsApp from "./SendWhatsApp";
 
 
 export default function MyForm() {
@@ -13,7 +12,6 @@ export default function MyForm() {
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate(); // ✅ correct hook
 
   const handleChange = (e) => {
     setFormData({
@@ -68,7 +66,7 @@ export default function MyForm() {
 
       <Card sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 2 }}> 
         <TextField
-        label="Name"
+        label="Enter Your Name"
         name="name"
         size="small"
         value={formData.name}
@@ -79,7 +77,7 @@ export default function MyForm() {
       />
 
       <TextField
-        label="Email"
+        label="Enter Your Email"
         name="email"
         size="small"
         value={formData.email}
@@ -89,7 +87,7 @@ export default function MyForm() {
       />
 
       <TextField
-        label="Phone Number"
+        label="Enter Your Phone Number"
         name="phone"
         size="small"
         value={formData.phone}
