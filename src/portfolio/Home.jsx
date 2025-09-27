@@ -260,25 +260,25 @@ import LinkedIn from '../assets/gif/Linkedin.gif';
 const Home = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState(() => {
-      return localStorage.getItem('mode') || 'light';
-    });
+    return localStorage.getItem('mode') || 'light';
+  });
   const [activeNav, setActiveNav] = useState('Home');
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          background: { default: '#ffffff' }, 
+          background: { default: '#ffffff' },
           mode,
           ...(mode === 'light'
             ? {
-                background: { default: '#fff' },
-                text: { primary: '#000' }
-              }
+              background: { default: '#fff' },
+              text: { primary: '#000' }
+            }
             : {
-                background: { default: '#121212' },
-                text: { primary: '#fff' }
-              })
+              background: { default: '#121212' },
+              text: { primary: '#fff' }
+            })
         },
         typography: {
           fontFamily: 'Arial, sans-serif'
@@ -405,7 +405,12 @@ const Home = () => {
               <Avatar
                 src={profileImage}
                 alt="Lalith Ganesh"
-                sx={{ width: 220, height: 220 }}
+                sx={{ width: 220, height: 220, userSelect: 'none' }}
+                imgProps={{
+                  draggable: false,
+                  onContextMenu: (e) => e.preventDefault(), // disable right-click menu
+                  onDragStart: (e) => e.preventDefault(),
+                }}
               />
             </Box>
           </Grid>
@@ -431,80 +436,82 @@ const Home = () => {
 
             {/* Tech Icons */}
             <Box mt={3} display="flex" gap={3} flexWrap="wrap" justifyContent="center">
-  <a href="mailto:your-email@gmail.com?subject=Portfolio%20Inquiry&body=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer">
-    <Card
-      sx={{
-        borderRadius: '60px',
-        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-        width: '70px',
-        height: '70px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        cursor: 'pointer',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        '&:hover': {
-          transform: 'scale(1.1)',
-          boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
-        },
-      }}
-    >
-      <img src={Gmail} alt="Gmail" width={50} />
-    </Card>
-  </a>
+              <a href="mailto:your-email@gmail.com?subject=Portfolio%20Inquiry&body=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer">
+                <Card
+                  sx={{
+                    borderRadius: '60px',
+                    boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+                    width: '70px',
+                    height: '70px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                      boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+                    },
+                  }}
+                >
+                  <img src={Gmail} alt="Gmail" width={50} />
+                </Card>
+              </a>
 
-  <a href="https://github.com/lalithganeshchalla" target="_blank" rel="noopener noreferrer">
-    <Card
-      sx={{
-        borderRadius: '60px',
-        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-        width: '70px',
-        height: '70px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        cursor: 'pointer',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        '&:hover': {
-          transform: 'scale(1.1)',
-          boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
-        },
-      }}
-    >
-      <img src={GitHub} alt="GitHub" width={50} />
-    </Card>
-  </a>
+              <a href="https://github.com/lalithganeshchalla" target="_blank" rel="noopener noreferrer">
+                <Card
+                  sx={{
+                    borderRadius: '60px',
+                    boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+                    width: '70px',
+                    height: '70px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                      boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+                    },
+                  }}
+                >
+                  <img src={GitHub} alt="GitHub" width={50} />
+                </Card>
+              </a>
 
-  <a href="https://www.linkedin.com/in/challa-lalith-ganesh" target="_blank" rel="noopener noreferrer">
-    <Card
-      sx={{
-        borderRadius: '60px',
-        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-        width: '70px',
-        height: '70px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        cursor: 'pointer',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        '&:hover': {
-          transform: 'scale(1.1)',
-          boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
-        },
-      }}
-    >
-      <img src={LinkedIn} alt="LinkedIn" width={50} />
-    </Card>
-  </a>
-</Box>
+              <a href="https://www.linkedin.com/in/challa-lalith-ganesh" target="_blank" rel="noopener noreferrer">
+                <Card
+                  sx={{
+                    borderRadius: '60px',
+                    boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+                    width: '70px',
+                    height: '70px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                      boxShadow: '0px 0px 25px rgba(0, 0, 0, 0.6)',
+                    },
+                  }}
+                >
+                  <img src={LinkedIn} alt="LinkedIn" width={50} />
+                </Card>
+              </a>
+            </Box>
 
 
             {/* Buttons */}
             <Box mt={4} display="flex" gap={2}>
               <Button
                 variant="contained"
-                sx={{ bgcolor: '#f57c00', color: '#fff', px: 3, py: 1.5,
-                  borderRadius: 10 }}
+                sx={{
+                  bgcolor: '#f57c00', color: '#fff', px: 3, py: 1.5,
+                  borderRadius: 10
+                }}
                 onClick={() => navigate('/projects')}
               >
                 View My Work

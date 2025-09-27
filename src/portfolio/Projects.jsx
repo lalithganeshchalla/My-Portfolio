@@ -236,7 +236,11 @@ const Projects = () => {
         px: 1,
         py: 1.1,
         borderRadius: 10,
-        ':hover': { bgcolor: '#11ff00ff' },
+        '&:hover': { 
+          bgcolor: '#f57c00', 
+          transform: 'scale(1.1)'
+        
+        },
       }}
     >
       <Link

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, Typography, Card } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // ✅ import from react-router-dom
+import sendToWhatsApp from "./SendToWhatsApp";
+
 
 export default function MyForm() {
   const [formData, setFormData] = useState({
@@ -28,24 +30,32 @@ export default function MyForm() {
     if (!formData.message) tempErrors.message = "Message is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email))
       tempErrors.email = "Invalid email address";
+    if (!formData.phone) tempErrors.phone = "Phone number is required";
+    if (!formData.message) tempErrors.message = "Message is required";
+
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log("Form submitted:", formData);
-      // example navigation after submission:
-      // navigate("/success");
-    }
-  };
+
+  const handelWhatsAppClick = () => {
+    if(!validate()) return;
+    sendToWhatsApp(formData);
+  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (validate()) {
+  //     console.log("Form submitted:", formData);
+  //     // example navigation after submission:
+  //     // navigate("/success");
+  //   }
+  // };
 
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit}
+      //onSubmit={handleSubmit}
       sx={{ display: "flex", flexDirection: "column", gap: 1, width: 300 }}
     >
       <Typography
@@ -111,13 +121,21 @@ export default function MyForm() {
             py: 1.5,
             borderRadius: 10,
           }}
-          onClick={() => navigate("/projects")} // ✅ now works
+          onClick={handelWhatsAppClick}
         >
           Send Message
         </Button>
 
         {/* Example of second button if needed */}
-        {/* 
+        {/*
+        <Button
+  variant="contained"
+  sx={{ bgcolor: "#25D366", color: "#fff", px: 3, py: 1.5, borderRadius: 10 }}
+  
+>
+  Send via WhatsApp
+</Button>
+ 
         <Button
           variant="outlined"
           sx={{
