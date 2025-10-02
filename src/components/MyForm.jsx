@@ -11,7 +11,9 @@ export default function MyForm() {
     message: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    
+  });
 
   const handleChange = (e) => {
     setFormData({
