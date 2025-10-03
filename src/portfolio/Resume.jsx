@@ -70,6 +70,11 @@ const Resume = () => {
       url: "https://generative-ai-prompts.vercel.app",
     },
   ];
+  const today = new Date().toLocaleDateString("en-US", {
+year: "numeric",
+month: "short",
+day: "numeric",
+});
 
   const handleThemeToggle = () => {
     setMode((prevMode) => {
@@ -311,7 +316,7 @@ const Resume = () => {
 
           {/* Footer / Actions */}
           <section className="flex flex-col sm:flex-row gap-3 justify-between items-center">
-            <div className="text-xs text-gray-600">Last updated: Oct 2025</div>
+            <div className="text-xs text-gray-600">Last updated: {today}</div>
             <div className="flex gap-2">
               <Button
               variant='contained'
