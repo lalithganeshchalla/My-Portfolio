@@ -314,6 +314,8 @@ const Resume = () => {
             <div className="text-xs text-gray-600">Last updated: Oct 2025</div>
             <div className="flex gap-2">
               <Button
+              variant='contained'
+              sx={{borderRadius:'20px'}}
                 // onClick={() => window.print()}
                 href='/resume1.pdf'
                 download
