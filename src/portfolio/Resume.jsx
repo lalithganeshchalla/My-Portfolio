@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Divider, IconButton, Button} from '@mui/material';
+import { Divider, IconButton, Button } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import './Home.css';
@@ -10,7 +10,9 @@ import {
   Link,
   Typography,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
+  Card,
+  Grid
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import logoImage from '../assets/apple-touch-icon.png';
@@ -45,7 +47,7 @@ const Resume = () => {
     { label: "About", path: "/about" },
     { label: 'Contact Us', path: '/contactus' }
   ];
-   const projects = [
+  const projects = [
     {
       title: "Hidden Cipher-Text Policy Attribute Based Encryption with Personal Health Record System",
       desc:
@@ -60,7 +62,7 @@ const Resume = () => {
     {
       title: "Task Management App (To-Do App)",
       desc:
-        "Flutter + Firebase app with real-time sync — improved task completion rate by 25%.",
+        "React.js web app with real-time task synchronization — improved task completion rate by 25%.",
       url: "https://task-manager-three-gold.vercel.app",
     },
     {
@@ -71,10 +73,10 @@ const Resume = () => {
     },
   ];
   const today = new Date().toLocaleDateString("en-US", {
-year: "numeric",
-month: "short",
-day: "numeric",
-});
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
   const handleThemeToggle = () => {
     setMode((prevMode) => {
@@ -179,166 +181,317 @@ day: "numeric",
             height="800px"
             style={{ border: 'none' }}
           /> */}
-  
- 
 
-    <div className="min-h-screen bg-gray-50 p-6 flex justify-center">
-      <div className="max-w-3xl w-full bg-white shadow-lg rounded-2xl p-8 print:shadow-none print:rounded-none relative">
-        {/* Download button at top right */}
-        <Link
-          href="/resume1.pdf"
-          download
-          className="absolute top-4 right-4 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg shadow hover:bg-blue-700"
-        >
-          ⬇️ Download Resume
-        </Link>
 
-        {/* Header */}
-        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold">Lalith Ganesh Challa</h1>
-            <p className="mt-1 text-sm text-gray-600">Junior Programmer • Software Developer / Full Stack Engineer</p>
-          </div>
 
-          <div className="text-sm text-gray-700 space-y-1">
-            <div>📧 challalalithganesh@gmail.com</div>
-            <div>📱 +91 9515394859</div>
-            <div>
-              🔗 <a className="underline" href="https://www.linkedin.com/in/challa-lalith-ganesh/" target="_blank" rel="noreferrer">LinkedIn</a> •{' '}
-              <a className="underline" href="https://github.com/lalithganeshchalla" target="_blank" rel="noreferrer">GitHub</a> •{' '}
-              <a className="underline" href="https://lalithganeshchallaportfolio.vercel.app/" target="_blank" rel="noreferrer">Portfolio</a>
-            </div>
-          </div>
-        </header>
+          <Box
+            sx={{
+              minHeight: "100vh",
+              bgcolor: "#f9fafb",
+              p: 4,
+              pt: 8,
+              position: "relative",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Link
+              href="/resume1.pdf"
+              download
+              underline="none"
+              sx={{
+                position: "absolute", // 👈 stays at top right
+                top: 10,
+                right: 30,
+                zIndex: 1000,
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                bgcolor: "#1976d2",
+                color: "#fff",
+                px: 2.5,
+                py: 1,
+                borderRadius: 2,
+                textDecoration: "none",
+                fontSize: "0.875rem",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+                "&:hover": { bgcolor: "#1565c0" },
+              }}
+            >
+              <img
+                src="/assets/download.png"
+                alt="Download"
+                style={{ width: "24px", height: "24px" }}
+              />
+              Download Resume
+            </Link>
+            <Card
+              sx={{
+                width: "100%",
+                maxWidth: "900px",
+                p: 5,
+                borderRadius: 4,
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                position: "relative",
+              }}
+            >
 
-        <main className="mt-6 grid grid-cols-1 gap-6">
-          {/* Profile */}
-          <section className="bg-gray-50 p-4 rounded-lg">
-            <h2 className="text-lg font-semibold">Profile</h2>
-            <p className="mt-2 text-sm text-gray-700">
-              Passionate and detail-oriented Junior Programmer skilled in Java, JavaScript, .NET Core, and
-              Flutter. Experienced in developing full-stack applications with modern frameworks and database
-              management. Proven ability to deliver responsive, user-focused solutions with strong problem-solving
-              and debugging skills. Seeking opportunities as a Software Developer / Full Stack Engineer to
-              contribute innovative solutions.
-            </p>
-          </section>
 
-          {/* Education + Certifications */}
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 rounded-lg bg-white border">
-              <h3 className="font-semibold">Education</h3>
-              <div className="mt-3 text-sm text-gray-700 space-y-3">
-                <div>
-                  <div className="font-medium">Master of Computer Applications (MCA)</div>
-                  <div className="text-gray-600 text-xs">D.N.R College of P.G. Course, Adikavi Nannaya University — Bhimavaram, AP</div>
-                  <div className="text-xs">2022 - 2024 • CGPA: 8.33</div>
-                </div>
-
-                <div>
-                  <div className="font-medium">Bachelor of Computer Science</div>
-                  <div className="text-gray-600 text-xs">Sri YN College, Adikavi Nannaya University — Narsapuram, AP</div>
-                  <div className="text-xs">2019 - 2022 • CGPA: 6.77</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-lg bg-white border">
-              <h3 className="font-semibold">Certifications</h3>
-              <ul className="mt-3 text-sm text-gray-700 list-disc list-inside space-y-1">
-                <li>Accenture Developer Job Simulation — Forage (2023)</li>
-                <li>Web Development Certificate — Devtown (2022)</li>
-                <li>Git & GitHub — Coursera (2023)</li>
-              </ul>
-            </div>
-          </section>
-
-          {/* Projects */}
-          <section className="p-4 rounded-lg bg-gray-50">
-            <h3 className="font-semibold">Projects</h3>
-            <div className="mt-3 space-y-4">
-              {projects.map((p) => (
-                <div key={p.title} className="p-3 bg-white border rounded-lg">
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-medium">{p.title}</h4>
-                    {p.url && (
-                      <a href={p.url} target="_blank" rel="noreferrer" className="text-xs underline">
-                        Live
-                      </a>
-                    )}
-                  </div>
-                  <p className="mt-2 text-sm text-gray-700">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Skills + Tools */}
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 rounded-lg bg-white border">
-              <h3 className="font-semibold">Technical Skills</h3>
-              <div className="mt-3 text-sm text-gray-700 space-y-2">
-                <div>
-                  <strong>Programming:</strong> Java, JavaScript, TypeScript, .NET Core
-                </div>
-                <div>
-                  <strong>Frameworks & Tools:</strong> Flutter, ReactJS, ExpressJS, Git/GitHub
-                </div>
-                <div>
-                  <strong>Databases:</strong> MySQL, Firebase, MongoDB
-                </div>
-                <div>
-                  <strong>Other:</strong> REST APIs, Agile Development, Debugging, Communication
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-lg bg-white border">
-              <h3 className="font-semibold">Volunteer & Leadership</h3>
-              <p className="mt-3 text-sm text-gray-700">
-                <strong>Team Lead</strong> — Physics Cluster (Bachelor’s Final Semester): Organized study groups and
-                academic support sessions. <br />
-                Active participation in blood donation drives, cultural fests, and community events.
-              </p>
-            </div>
-          </section>
-
-          {/* Strengths */}
-          <section className="p-4 rounded-lg bg-gray-50">
-            <h3 className="font-semibold">Strengths</h3>
-            <ul className="mt-3 text-sm text-gray-700 list-disc list-inside">
-              <li>Problem-Solving & Debugging</li>
-              <li>Collaboration in Agile Teams</li>
-              <li>Adaptability & Quick Learning</li>
-              <li>Creative Solution Design</li>
-            </ul>
-          </section>
-
-          {/* Footer / Actions */}
-          <section className="flex flex-col sm:flex-row gap-3 justify-between items-center">
-            <div className="text-xs text-gray-600">Last updated: {today}</div>
-            <div className="flex gap-2">
-              <Button
-              variant='contained'
-              sx={{borderRadius:'20px'}}
-                // onClick={() => window.print()}
-                href='/resume1.pdf'
-                download
-                className="px-4 py-2 rounded-lg border text-sm hover:shadow"
+              {/* Header */}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  justifyContent: "space-between",
+                  alignItems: { xs: "flex-start", sm: "center" },
+                  gap: 2,
+                }}
               >
-                Save PDF
-              </Button><br></br>
-              <a
-                href="mailto:challalalithganesh@gmail.com"
-                className="px-4 py-2 rounded-lg border text-sm hover:shadow inline-block"
+                <Box>
+                  <Typography variant="h4" fontWeight="bold">
+                    Lalith Ganesh Challa
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Junior Programmer • Software Developer / Full Stack Engineer
+                  </Typography>
+                </Box>
+
+                <Box>
+                  <Typography variant="body2">📧 challalalithganesh@gmail.com</Typography>
+                  <Typography variant="body2">📱 +91 9515394859</Typography>
+                  <Typography variant="body2">
+                    🔗{" "}
+                    <Link
+                      href="https://www.linkedin.com/in/challa-lalith-ganesh/"
+                      target="_blank"
+                    >
+                      LinkedIn
+                    </Link>{" "}
+                    •{" "}
+                    <Link href="https://github.com/lalithganeshchalla" target="_blank">
+                      GitHub
+                    </Link>{" "}
+                    •{" "}
+                    <Link
+                      href="https://lalithganeshchallaportfolio.vercel.app/"
+                      target="_blank"
+                    >
+                      Portfolio
+                    </Link>
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Divider sx={{ my: 3 }} />
+
+              {/* Profile */}
+              <Box sx={{ bgcolor: "#f9fafb", p: 2.5, borderRadius: 2 }}>
+                <Typography variant="h6" fontWeight="600">
+                  Profile
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 1.5, color: "text.secondary" }}>
+                  Passionate and detail-oriented Junior Programmer skilled in Java,
+                  JavaScript, .NET Core, and Flutter. Experienced in developing
+                  full-stack applications with modern frameworks and database
+                  management. Proven ability to deliver responsive, user-focused
+                  solutions with strong problem-solving and debugging skills. Seeking
+                  opportunities as a Software Developer / Full Stack Engineer to
+                  contribute innovative solutions.
+                </Typography>
+              </Box>
+
+              {/* Education & Certifications */}
+              <Grid container spacing={2} sx={{ mt: 3 }}>
+                <Grid item xs={12} md={6}>
+                  <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
+                    <Typography fontWeight="600">Education</Typography>
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2" fontWeight="500">
+                        Master of Computer Applications (MCA)
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        D.N.R College of P.G. Course, Adikavi Nannaya University —
+                        Bhimavaram, AP
+                      </Typography>
+                      <Typography variant="caption" display="block">
+                        2022 - 2024 • CGPA: 8.33
+                      </Typography>
+                    </Box>
+
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2" fontWeight="500">
+                        Bachelor of Computer Science
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        Sri YN College, Adikavi Nannaya University — Narsapuram, AP
+                      </Typography>
+                      <Typography variant="caption" display="block">
+                        2019 - 2022 • CGPA: 6.77
+                      </Typography>
+                    </Box>
+                  </Card>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
+                    <Typography fontWeight="600">Certifications</Typography>
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2">
+                        Accenture Developer Job Simulation — Forage (2023)
+                      </Typography>
+                      <Typography variant="body2">
+                        Web Development Certificate — Devtown (2022)
+                      </Typography>
+                      <Typography variant="body2">
+                        Git & GitHub — Coursera (2023)
+                      </Typography>
+                    </Box>
+                  </Card>
+                </Grid>
+              </Grid>
+
+              {/* Projects */}
+              <Box sx={{ mt: 3, bgcolor: "#f9fafb", p: 2.5, borderRadius: 2 }}>
+                <Typography variant="h6" fontWeight="600">
+                  Projects
+                </Typography>
+
+                <Box sx={{ mt: 2 }}>
+                  {projects.map((p) => (
+                    <Card
+                      key={p.title}
+                      variant="outlined"
+                      sx={{ p: 2, mb: 2, borderRadius: 2 }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Typography fontWeight="500">{p.title}</Typography>
+                        {p.url && (
+                          <Link
+                            href={p.url}
+                            target="_blank"
+                            variant="caption"
+                            underline="hover"
+                          >
+                            Live
+                          </Link>
+                        )}
+                      </Box>
+                      <Typography
+                        variant="body2"
+                        sx={{ mt: 1, color: "text.secondary" }}
+                      >
+                        {p.desc}
+                      </Typography>
+                    </Card>
+                  ))}
+                </Box>
+              </Box>
+
+              {/* Skills + Volunteer */}
+              <Grid container spacing={2} sx={{ mt: 3 }}>
+                <Grid item xs={12} md={6}>
+                  <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
+                    <Typography fontWeight="600">Technical Skills</Typography>
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2">
+                        <strong>Programming:</strong> Java, JavaScript, TypeScript,
+                        .NET Core
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Frameworks & Tools:</strong> Flutter, ReactJS,
+                        ExpressJS, Git/GitHub
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Databases:</strong> MySQL, MongoDB
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Other:</strong> REST APIs, Agile Development,
+                        Debugging, Communication
+                      </Typography>
+                    </Box>
+                  </Card>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
+                    <Typography fontWeight="600">Volunteer & Leadership</Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ mt: 1.5, color: "text.secondary" }}
+                    >
+                      <strong>Team Lead</strong> — Physics Cluster: Organized study
+                      groups and academic sessions. Active participant in blood
+                      donation drives, cultural fests, and community events.
+                    </Typography>
+                  </Card>
+                </Grid>
+              </Grid>
+
+              {/* Strengths */}
+              <Box sx={{ mt: 3, bgcolor: "#f9fafb", p: 2.5, borderRadius: 2 }}>
+                <Typography variant="h6" fontWeight="600">
+                  Strengths
+                </Typography>
+                <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+                  {[
+                    "Problem-Solving & Debugging",
+                    "Collaboration in Agile Teams",
+                    "Adaptability & Quick Learning",
+                    "Creative Solution Design",
+                  ].map((strength) => (
+                    <Typography
+                      component="li"
+                      key={strength}
+                      variant="body2"
+                      color="text.secondary"
+                    >
+                      {strength}
+                    </Typography>
+                  ))}
+                </Box>
+              </Box>
+
+              {/* Footer */}
+              <Grid
+                container
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{ mt: 3 }}
               >
-                Contact
-              </a>
-            </div>
-          </section>
-        </main>
-      </div>
-    </div>
+                <Typography variant="caption" color="text.secondary">
+                  Last updated: {today}
+                </Typography>
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    href="/resume1.pdf"
+                    download
+                    sx={{ borderRadius: "20px" }}
+                  >
+                    Save PDF
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="inherit"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=challalalithganesh@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ borderRadius: "20px" }}
+                  >
+                    Contact
+                  </Button>
+
+                </Box>
+              </Grid>
+            </Card>
+          </Box>
 
         </Box>
       </Container>
