@@ -205,7 +205,7 @@ const ContactUs = () => {
         gap: 2,
       }}
     >
-      <a href="mailto:your-email@gmail.com?subject=Portfolio%20Inquiry&body=Hi,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer">
+      <a  href="https://mail.google.com/mail/?view=cm&fs=1&to=challalalithganesh@gmail.com" underline='none' target="_blank" rel="noopener noreferrer">
       <Card
         sx={{
           p: 2,
@@ -218,7 +218,7 @@ const ContactUs = () => {
         }}
       >
         <img src={email} alt="Gmail" style={{ width: 40, height: 40 }} />
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1" underline='none' color="text.secondary">
           challalalithganesh@gmail.com
         </Typography>
       </Card>
