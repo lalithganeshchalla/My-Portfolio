@@ -188,51 +188,54 @@ const Resume = () => {
             sx={{
               minHeight: "100vh",
               bgcolor: "#f9fafb",
-              p: 4,
-              pt: 8,
+              p: {xs: 2, sm: 4},
+              pt: {xs:6,sm: 8},
               position: "relative",
               display: "flex",
               justifyContent: "center",
+              overflowX: "hidden",
             }}
-          >
+           >
             <Link
               href="/resume1.pdf"
               download
               underline="none"
               sx={{
-                position: "absolute", // 👈 stays at top right
-                top: 10,
-                right: 30,
-                zIndex: 1000,
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                bgcolor: "#1976d2",
-                color: "#fff",
-                px: 2.5,
-                py: 1,
-                borderRadius: 2,
-                textDecoration: "none",
-                fontSize: "0.875rem",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
-                "&:hover": { bgcolor: "#1565c0" },
-              }}
+      position: { xs: "fixed", sm: "absolute" },
+      bottom: { xs: 16, sm: "auto" },
+      right: { xs: 16, sm: 30 },
+      top: { sm: 10 },
+      zIndex: 1000,
+      display: "flex",
+      alignItems: "center",
+      gap: 1,
+      bgcolor: "#1976d2",
+      color: "#fff",
+      px: { xs: 2, sm: 2.5 },
+      py: 1,
+      borderRadius: 2,
+      textDecoration: "none",
+      fontSize: "0.875rem",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+      "&:hover": { bgcolor: "#1565c0" },
+    }}
             >
               <img
                 src="/assets/download.png"
                 alt="Download"
-                style={{ width: "24px", height: "24px" }}
+                style={{ width: "25px", height: "25px" }}
               />
-              Download Resume
+              <Box sx={{ display: { xs: "none", sm: "block" } }}>Download Resume</Box>
             </Link>
             <Card
               sx={{
                 width: "100%",
                 maxWidth: "900px",
-                p: 5,
+                p: { xs: 2.5, sm: 5 },
                 borderRadius: 4,
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                position: "relative",
+                // position: "relative",
+                overflowWrap:"break-word"
               }}
             >
 
@@ -248,7 +251,9 @@ const Resume = () => {
                 }}
               >
                 <Box>
-                  <Typography variant="h4" fontWeight="bold">
+                  <Typography variant="h4" fontWeight="bold"
+                     sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+                  >
                     Lalith Ganesh Challa
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -337,13 +342,13 @@ const Resume = () => {
                     <Typography fontWeight="600">Certifications</Typography>
                     <Box sx={{ mt: 2 }}>
                       <Typography variant="body2">
-                        Accenture Developer Job Simulation — Forage (2023)
+                       • Accenture Developer Job Simulation — Forage (2023)
                       </Typography>
                       <Typography variant="body2">
-                        Web Development Certificate — Devtown (2022)
+                       • Web Development Certificate — Devtown (2022)
                       </Typography>
                       <Typography variant="body2">
-                        Git & GitHub — Coursera (2023)
+                       • Git & GitHub — Coursera (2023)
                       </Typography>
                     </Box>
                   </Card>
