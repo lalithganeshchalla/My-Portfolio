@@ -12,7 +12,9 @@ import {
   createTheme,
   ThemeProvider,
   Card,
-  Grid
+  Grid,
+  Snackbar,
+  Alert
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import logoImage from '../assets/apple-touch-icon.png';
@@ -22,6 +24,7 @@ const Resume = () => {
     return localStorage.getItem('mode') || 'light';
   });
   const [activeNav, setActiveNav] = useState('Resume');
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'info' });
 
   const theme = useMemo(
     () =>
@@ -39,6 +42,7 @@ const Resume = () => {
       }),
     [mode]
   );
+
   const navLinks = [
     { label: 'Home', path: '/home' },
     { label: 'Resume', path: '/resume' },
@@ -47,31 +51,29 @@ const Resume = () => {
     { label: "About", path: "/about" },
     { label: 'Contact Us', path: '/contactus' }
   ];
+  
   const projects = [
     {
-      title: "Hidden Cipher-Text Policy Attribute Based Encryption with Personal Health Record System",
-      desc:
-        "Implemented a secure encryption model embedding access policies into medical data, ensuring confidentiality and compliance with privacy standards.",
-    },
-    {
-      title: "MasterCode",
-      desc:
-        "Responsive hackathon platform with leaderboards, real-time coding challenges and modern UI.",
+      title: "MasterCode – Hackathon Platform",
+      desc: "Engineered a full-stack hackathon platform using MERN stack with real-time coding challenges and dynamic leaderboards. Implemented secure authentication for 200+ developers and facilitated 500+ code submissions.",
       url: "https://master-code-one.vercel.app",
     },
     {
-      title: "Task Management App (To-Do App)",
-      desc:
-        "React.js web app with real-time task synchronization — improved task completion rate by 25%.",
-      url: "https://task-manager-three-gold.vercel.app",
+      title: "Secure Personal Health Record System",
+      desc: "Developed healthcare data management system using Ciphertext-Policy Attribute-Based Encryption (CP-ABE) to enforce fine-grained access control. Ensured HIPAA compliance through secure database architecture.",
     },
     {
-      title: "AI Prompts Website",
-      desc:
-        "ReactJS + NodeJS platform for discovering & sharing AI prompts; used by 200+ users.",
+      title: "AI PromptHub – Community Platform",
+      desc: "Built responsive community-driven platform for discovering and sharing AI prompts. Increased user engagement by 40% through social features and curated library of 100+ prompts.",
       url: "https://generative-ai-prompts.vercel.app",
     },
+    {
+      title: "TaskFlow – Productivity Application",
+      desc: "Developed intuitive task management app with drag-and-drop functionality. Improved user productivity by 30% through optimized UI and seamless task tracking.",
+      url: "https://task-manager-three-gold.vercel.app",
+    },
   ];
+
   const today = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -81,9 +83,39 @@ const Resume = () => {
   const handleThemeToggle = () => {
     setMode((prevMode) => {
       const newMode = prevMode === 'light' ? 'dark' : 'light';
-      localStorage.setItem('mode', newMode);   // persist
+      localStorage.setItem('mode', newMode);
       return newMode;
     });
+  };
+
+  // Updated download function with correct filename
+  const handleDownloadPDF = () => {
+    const pdfPath = '/LalithGaneshChalla.pdf';
+    
+    try {
+      const link = document.createElement('a');
+      link.href = pdfPath;
+      link.download = 'Lalith Ganesh Challa Resume.pdf'; // This will be the downloaded filename
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setSnackbar({ open: true, message: 'Resume download started!', severity: 'success' });
+    } catch (error) {
+      console.error('Download failed:', error);
+      setSnackbar({ 
+        open: true, 
+        message: 'Download failed. Please check if the file exists.', 
+        severity: 'error' 
+      });
+    }
+  };
+
+  const handleViewPDF = () => {
+    window.open('/LalithGaneshChalla.pdf', '_blank');
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
   };
 
   return (
@@ -126,8 +158,7 @@ const Resume = () => {
                   underline="none"
                   onClick={() => setActiveNav(item.label)}
                   sx={{
-                    color:
-                      activeNav === item.label ? 'primary.main' : 'text.primary',
+                    color: activeNav === item.label ? 'primary.main' : 'text.primary',
                     position: 'relative',
                     fontWeight: activeNav === item.label ? 'bold' : 'normal',
                     '&::after': {
@@ -165,6 +196,7 @@ const Resume = () => {
           </Box>
         </Box>
         <Divider />
+        
         <Box mt={4} flexWrap="wrap" sx={{ mr: 4, ml: 4 }}>
           <Typography
             variant="h4"
@@ -174,59 +206,52 @@ const Resume = () => {
           >
             My Resume
           </Typography>
-          {/* <iframe
-            src="/resume1.pdf"
-            title="Resume"
-            width="100%"
-            height="800px"
-            style={{ border: 'none' }}
-          /> */}
-
-
 
           <Box
             sx={{
               minHeight: "100vh",
-              bgcolor: "#f9fafb",
-              p: {xs: 2, sm: 4},
-              pt: {xs:6,sm: 8},
+              bgcolor: "background.default",
+              p: { xs: 2, sm: 4 },
+              pt: { xs: 6, sm: 8 },
               position: "relative",
               display: "flex",
               justifyContent: "center",
               overflowX: "hidden",
             }}
-           >
-            <Link
-              href="/resume1.pdf"
-              download
-              underline="none"
+          >
+            {/* Download Button - Updated with correct filename */}
+            <Button
+              variant="contained"
+              onClick={handleDownloadPDF}
               sx={{
-      position: { xs: "fixed", sm: "absolute" },
-      bottom: { xs: 16, sm: "auto" },
-      right: { xs: 16, sm: 30 },
-      top: { sm: 10 },
-      zIndex: 1000,
-      display: "flex",
-      alignItems: "center",
-      gap: 1,
-      bgcolor: "#1976d2",
-      color: "#fff",
-      px: { xs: 2, sm: 2.5 },
-      py: 1,
-      borderRadius: 2,
-      textDecoration: "none",
-      fontSize: "0.875rem",
-      boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
-      "&:hover": { bgcolor: "#1565c0" },
-    }}
+                position: { xs: "fixed", sm: "absolute" },
+                bottom: { xs: 16, sm: "auto" },
+                right: { xs: 16, sm: 30 },
+                top: { sm: 10 },
+                zIndex: 1000,
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                bgcolor: "primary.main",
+                color: "#fff",
+                px: { xs: 2, sm: 2.5 },
+                py: 1,
+                borderRadius: 2,
+                fontSize: "0.875rem",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+                "&:hover": { bgcolor: "primary.dark" },
+                textTransform: 'none'
+              }}
             >
               <img
                 src="/assets/download.png"
                 alt="Download"
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "20px", height: "20px" }}
               />
               <Box sx={{ display: { xs: "none", sm: "block" } }}>Download Resume</Box>
-            </Link>
+              <Box sx={{ display: { xs: "block", sm: "none" } }}>Download</Box>
+            </Button>
+            
             <Card
               sx={{
                 width: "100%",
@@ -234,12 +259,9 @@ const Resume = () => {
                 p: { xs: 2.5, sm: 5 },
                 borderRadius: 4,
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                // position: "relative",
-                overflowWrap:"break-word"
+                overflowWrap: "break-word"
               }}
             >
-
-
               {/* Header */}
               <Box
                 sx={{
@@ -252,16 +274,16 @@ const Resume = () => {
               >
                 <Box>
                   <Typography variant="h4" fontWeight="bold"
-                     sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+                    sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
                   >
                     Lalith Ganesh Challa
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Junior Programmer • Software Developer / Full Stack Engineer
+                    Full-Stack Developer
                   </Typography>
                 </Box>
 
-                <Box>
+                <Box sx={{ textAlign: { xs: "left", sm: "right" } }}>
                   <Typography variant="body2">📧 challalalithganesh@gmail.com</Typography>
                   <Typography variant="body2">📱 +91 9515394859</Typography>
                   <Typography variant="body2">
@@ -269,17 +291,23 @@ const Resume = () => {
                     <Link
                       href="https://www.linkedin.com/in/challa-lalith-ganesh/"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       LinkedIn
                     </Link>{" "}
                     •{" "}
-                    <Link href="https://github.com/lalithganeshchalla" target="_blank">
+                    <Link 
+                      href="https://github.com/lalithganeshchalla" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       GitHub
                     </Link>{" "}
                     •{" "}
                     <Link
                       href="https://lalithganeshchallaportfolio.vercel.app/"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Portfolio
                     </Link>
@@ -289,19 +317,13 @@ const Resume = () => {
 
               <Divider sx={{ my: 3 }} />
 
-              {/* Profile */}
-              <Box sx={{ bgcolor: "#f9fafb", p: 2.5, borderRadius: 2 }}>
-                <Typography variant="h6" fontWeight="600">
-                  Profile
+              {/* Professional Summary */}
+              <Box sx={{ bgcolor: "background.default", p: 2.5, borderRadius: 2 }}>
+                <Typography variant="h6" fontWeight="600" gutterBottom>
+                  Professional Summary
                 </Typography>
-                <Typography variant="body2" sx={{ mt: 1.5, color: "text.secondary" }}>
-                  Passionate and detail-oriented Junior Programmer skilled in Java,
-                  JavaScript, .NET Core, and Flutter. Experienced in developing
-                  full-stack applications with modern frameworks and database
-                  management. Proven ability to deliver responsive, user-focused
-                  solutions with strong problem-solving and debugging skills. Seeking
-                  opportunities as a Software Developer / Full Stack Engineer to
-                  contribute innovative solutions.
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  Results-driven Full-Stack Developer skilled in Java, JavaScript, and .NET Core with proven experience building responsive web and mobile applications using React, Flutter, and Node.js. Demonstrated success in deploying scalable solutions serving 200+ users. Strong foundation in database management, REST API development, and agile methodologies. Seeking to deliver innovative, user-focused solutions in a collaborative team environment.
                 </Typography>
               </Box>
 
@@ -309,28 +331,29 @@ const Resume = () => {
               <Grid container spacing={2} sx={{ mt: 3 }}>
                 <Grid item xs={12} md={6}>
                   <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
-                    <Typography fontWeight="600">Education</Typography>
+                    <Typography variant="h6" fontWeight="600" gutterBottom>
+                      Education
+                    </Typography>
                     <Box sx={{ mt: 2 }}>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography variant="body1" fontWeight="500">
                         Master of Computer Applications (MCA)
                       </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        D.N.R College of P.G. Course, Adikavi Nannaya University —
-                        Bhimavaram, AP
+                      <Typography variant="body2" color="text.secondary">
+                        D.N.R College of P.G. Course, Adikavi Nannaya University
                       </Typography>
-                      <Typography variant="caption" display="block">
+                      <Typography variant="body2">
                         2022 - 2024 • CGPA: 8.33
                       </Typography>
                     </Box>
 
                     <Box sx={{ mt: 2 }}>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography variant="body1" fontWeight="500">
                         Bachelor of Computer Science
                       </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        Sri YN College, Adikavi Nannaya University — Narsapuram, AP
+                      <Typography variant="body2" color="text.secondary">
+                        Sri YN College, Adikavi Nannaya University
                       </Typography>
-                      <Typography variant="caption" display="block">
+                      <Typography variant="body2">
                         2019 - 2022 • CGPA: 6.77
                       </Typography>
                     </Box>
@@ -339,167 +362,194 @@ const Resume = () => {
 
                 <Grid item xs={12} md={6}>
                   <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
-                    <Typography fontWeight="600">Certifications</Typography>
+                    <Typography variant="h6" fontWeight="600" gutterBottom>
+                      Certifications
+                    </Typography>
                     <Box sx={{ mt: 2 }}>
                       <Typography variant="body2">
-                       • Accenture Developer Job Simulation — Forage (2023)
+                        • Accenture Developer Job Simulation — Forage | Dec 2023
                       </Typography>
                       <Typography variant="body2">
-                       • Web Development Certificate — Devtown (2022)
+                        • Web Development Certificate — Devtown | Jun 2023
                       </Typography>
                       <Typography variant="body2">
-                       • Git & GitHub — Coursera (2023)
+                        • Git & GitHub — Coursera | Aug 2024
                       </Typography>
                     </Box>
                   </Card>
                 </Grid>
               </Grid>
 
+              {/* Technical Skills */}
+              <Box sx={{ mt: 3, bgcolor: "background.default", p: 2.5, borderRadius: 2 }}>
+                <Typography variant="h6" fontWeight="600" gutterBottom>
+                  Technical Skills
+                </Typography>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="body2">
+                      <strong>Programming Languages:</strong> Java, JavaScript, TypeScript, C# (.NET Core), Dart
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                      <strong>Frontend Technologies:</strong> React, Flutter, HTML5, CSS3, Bootstrap
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="body2">
+                      <strong>Backend Technologies:</strong> Node.js, Express.js, .NET Core, REST APIs
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                      <strong>Databases & Tools:</strong> MySQL, Firebase, MongoDB, Git, GitHub, Postman, Vercel
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+
               {/* Projects */}
-              <Box sx={{ mt: 3, bgcolor: "#f9fafb", p: 2.5, borderRadius: 2 }}>
-                <Typography variant="h6" fontWeight="600">
+              <Box sx={{ mt: 3, bgcolor: "background.default", p: 2.5, borderRadius: 2 }}>
+                <Typography variant="h6" fontWeight="600" gutterBottom>
                   Projects
                 </Typography>
 
                 <Box sx={{ mt: 2 }}>
-                  {projects.map((p) => (
+                  {projects.map((project) => (
                     <Card
-                      key={p.title}
+                      key={project.title}
                       variant="outlined"
-                      sx={{ p: 2, mb: 2, borderRadius: 2 }}
+                      sx={{ p: 2.5, mb: 2, borderRadius: 2 }}
                     >
                       <Box
                         sx={{
                           display: "flex",
                           justifyContent: "space-between",
-                          alignItems: "center",
+                          alignItems: "flex-start",
+                          flexDirection: { xs: "column", sm: "row" },
+                          gap: 1
                         }}
                       >
-                        <Typography fontWeight="500">{p.title}</Typography>
-                        {p.url && (
-                          <Link
-                            href={p.url}
+                        <Typography variant="h6" fontWeight="500" sx={{ fontSize: '1.1rem' }}>
+                          {project.title}
+                        </Typography>
+                        {project.url && (
+                          <Button
+                            href={project.url}
                             target="_blank"
-                            variant="caption"
-                            underline="hover"
+                            rel="noopener noreferrer"
+                            variant="outlined"
+                            size="small"
+                            sx={{ borderRadius: 2 }}
                           >
-                            Live
-                          </Link>
+                            Live Demo
+                          </Button>
                         )}
                       </Box>
                       <Typography
                         variant="body2"
-                        sx={{ mt: 1, color: "text.secondary" }}
+                        sx={{ mt: 1.5, color: "text.secondary", lineHeight: 1.6 }}
                       >
-                        {p.desc}
+                        {project.desc}
                       </Typography>
                     </Card>
                   ))}
                 </Box>
               </Box>
 
-              {/* Skills + Volunteer */}
+              {/* Leadership & Footer */}
               <Grid container spacing={2} sx={{ mt: 3 }}>
                 <Grid item xs={12} md={6}>
                   <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
-                    <Typography fontWeight="600">Technical Skills</Typography>
-                    <Box sx={{ mt: 2 }}>
-                      <Typography variant="body2">
-                        <strong>Programming:</strong> Java, JavaScript, TypeScript,
-                        .NET Core
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Frameworks & Tools:</strong> Flutter, ReactJS,
-                        ExpressJS, Git/GitHub
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Databases:</strong> MySQL, MongoDB
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Other:</strong> REST APIs, Agile Development,
-                        Debugging, Communication
-                      </Typography>
-                    </Box>
+                    <Typography variant="h6" fontWeight="600" gutterBottom>
+                      Leadership & Activities
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                      <strong>Physics Cluster Team Lead:</strong> Organized study groups and academic support sessions for 30+ students, achieving 15% average grade improvement.
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1, color: "text.secondary" }}>
+                      <strong>Community Engagement:</strong> Active participant in blood donation drives and institutional events.
+                    </Typography>
                   </Card>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Card variant="outlined" sx={{ p: 2.5, borderRadius: 2 }}>
-                    <Typography fontWeight="600">Volunteer & Leadership</Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ mt: 1.5, color: "text.secondary" }}
-                    >
-                      <strong>Team Lead</strong> — Physics Cluster: Organized study
-                      groups and academic sessions. Active participant in blood
-                      donation drives, cultural fests, and community events.
+                    <Typography variant="h6" fontWeight="600" gutterBottom>
+                      Strengths
                     </Typography>
+                    <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+                      {[
+                        "Problem-Solving & Debugging",
+                        "Collaboration in Agile Teams",
+                        "Adaptability & Quick Learning",
+                        "Creative Solution Design",
+                      ].map((strength) => (
+                        <Typography
+                          component="li"
+                          key={strength}
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{ mb: 0.5 }}
+                        >
+                          {strength}
+                        </Typography>
+                      ))}
+                    </Box>
                   </Card>
                 </Grid>
               </Grid>
 
-              {/* Strengths */}
-              <Box sx={{ mt: 3, bgcolor: "#f9fafb", p: 2.5, borderRadius: 2 }}>
-                <Typography variant="h6" fontWeight="600">
-                  Strengths
-                </Typography>
-                <Box component="ul" sx={{ pl: 2, mt: 1 }}>
-                  {[
-                    "Problem-Solving & Debugging",
-                    "Collaboration in Agile Teams",
-                    "Adaptability & Quick Learning",
-                    "Creative Solution Design",
-                  ].map((strength) => (
-                    <Typography
-                      component="li"
-                      key={strength}
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {strength}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-
-              {/* Footer */}
+              {/* Footer with updated download buttons */}
               <Grid
                 container
                 justifyContent="space-between"
                 alignItems="center"
-                sx={{ mt: 3 }}
+                sx={{ mt: 4, pt: 2, borderTop: 1, borderColor: 'divider' }}
               >
                 <Typography variant="caption" color="text.secondary">
                   Last updated: {today}
                 </Typography>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <Box sx={{ display: "flex", gap: 1, flexWrap: 'wrap' }}>
                   <Button
                     variant="contained"
                     color="primary"
-                    href="/resume1.pdf"
-                    download
+                    onClick={handleDownloadPDF}
                     sx={{ borderRadius: "20px" }}
                   >
-                    Save PDF
+                    Download PDF
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={handleViewPDF}
+                    sx={{ borderRadius: "20px" }}
+                  >
+                    View PDF
                   </Button>
                   <Button
                     variant="outlined"
                     color="inherit"
-                    href="https://mail.google.com/mail/?view=cm&fs=1&to=challalalithganesh@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="mailto:challalalithganesh@gmail.com"
                     sx={{ borderRadius: "20px" }}
                   >
-                    Contact
+                    Contact Me
                   </Button>
-
                 </Box>
               </Grid>
             </Card>
           </Box>
-
         </Box>
       </Container>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 };
