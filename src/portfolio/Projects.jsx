@@ -3,15 +3,11 @@ import { Card, Divider, IconButton, Grid, CardMedia, CardContent, Button } from 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ReactLogo from '../assets/gif/React.gif';
-// import TaskManager from '../assets/taskmanager.png';
-// import PortfolioCover from '../assets/portfolio.png';
-// import MasterCode from '../assets/mastercode.png';
 import {
   Box,
   Container,
   CssBaseline,
   Link,
-  // Switch,
   Typography,
   createTheme,
   ThemeProvider

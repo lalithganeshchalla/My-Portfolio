@@ -30,7 +30,7 @@ const Resume = () => {
     () =>
       createTheme({
         palette: {
-          background: { default: '#ffffffff' },
+          background: { default: '#FFFFFFFF' },
           mode,
           ...(mode === 'light'
             ? { background: { default: '#f5f5f5' }, text: { primary: '#000' } }
